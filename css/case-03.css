@@ -297,3 +297,41 @@ body {
     border-radius: 3px;
     transition: width 0.1s linear;
 }
+
+/* ── 첫 화면으로 돌아가기 버튼 (case-01/02 동일 원형 스타일) ── */
+.go-to-start-btn {
+    background: rgba(17, 17, 17, 0.05);
+    color: #111111;
+    border: 2px solid #111111;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease, opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(17, 17, 17, 0.15);
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+    z-index: 10;
+}
+
+.go-to-start-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.7);
+}
+
+.go-to-start-btn:hover,
+.go-to-start-btn:active {
+    background: #111111;
+    color: #ffffff;
+    box-shadow: 0 0 25px rgba(17, 17, 17, 0.4);
+    transform: scale(1.1);
+}
+
