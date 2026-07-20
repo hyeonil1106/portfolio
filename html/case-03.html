@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모멘텀 AI 대시보드 케이스스터디</title>
+    <base href="../">
+    <link rel="stylesheet" href="./css/case-03.css">
+</head>
+<body>
+
+<!-- Floating Home Button -->
+<a href="index.html" class="back-to-home">← Back to Portfolio</a>
+
+<!-- 좌측 세로 점 네비게이션 -->
+<div class="vertical-nav">
+    <div class="vertical-dots" id="slideDots"></div>
+    <button class="go-to-start-btn hidden" onclick="scrollToSection(0)" aria-label="첫 화면으로 돌아가기">↑</button>
+</div>
+
+<!-- 세로 스크롤 컨테이너 -->
+<div class="scroll-container">
+    <!-- sec-0: 커버 섹션 (원본 배경 sec_0.png 유지 및 텍스트/비디오/링크 매핑) -->
+    <section class="case-section sec-0" id="sec-0">
+        <img src="./assets/case-03/sec_0.png" alt="CASE-3 Cover" class="section-bg-image">
+        
+        <!-- 비디오 영역 -->
+        <div class="sec0-video-wrapper">
+            <video class="sec0-video" muted playsinline>
+                <source src="./assets/case-03/case-03_video.webm" type="video/webm">
+                브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+            <!-- 플레이 오버레이 버튼 -->
+            <button class="sec0-play-btn" aria-label="영상 재생">
+                <svg viewBox="0 0 24 24" class="play-icon">
+                    <path d="M8 5v14l11-7z" fill="currentColor"></path>
+                </svg>
+            </button>
+            <!-- 하단 컨트롤러 바 -->
+            <div class="sec0-controls">
+                <!-- 처음으로 (되감기) 버튼 -->
+                <button class="sec0-ctrl-btn reset-btn" aria-label="처음으로">
+                    <svg viewBox="0 0 24 24" class="ctrl-icon">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" fill="currentColor"></path>
+                    </svg>
+                </button>
+                <!-- 재생 시간 표시 -->
+                <span class="sec0-time-display">0:00 / 0:00</span>
+                <!-- 재생 진행 상황 바 -->
+                <div class="sec0-progress-container">
+                    <div class="sec0-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 피그마 링크 & GitHub 링크 매핑 -->
+        <a href="https://www.figma.com/design/SHu9GVwS9XzwFJt46rsuqN/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%EC%98%A4-%EA%B0%80%EC%9D%B4%EB%93%9C?node-id=387-1960&m=dev" target="_blank" class="sec0-btn figma-link" aria-label="Figma 디자인 가이드 보기"></a>
+        <a href="https://hyeonil1106.github.io/QuoteDashboard/" target="_blank" class="sec0-btn github-link" aria-label="GitHub 배포 사이트 보기"></a>
+    </section>
+    
+    <!-- sec-1: 프로젝트 배경 및 목표 -->
+    <section class="case-section sec-1" id="sec-1">
+        <img src="./assets/case-03/sec_1.png" alt="프로젝트 배경 및 목표" class="section-bg-image">
+    </section>
+    
+    <!-- sec-2: 핵심가설 -->
+    <section class="case-section sec-2" id="sec-2">
+        <img src="./assets/case-03/sec_2.png" alt="핵심 가설" class="section-bg-image">
+    </section>
+    
+    <!-- sec-3: UX 전략 및 정보 구조 -->
+    <section class="case-section sec-3" id="sec-3">
+        <img src="./assets/case-03/sec_3.png" alt="UX 전략 및 정보 구조" class="section-bg-image">
+    </section>
+    
+    <!-- sec-4: 메인 디자인 -->
+    <section class="case-section sec-4" id="sec-4">
+        <img src="./assets/case-03/sec_4.png" alt="메인 디자인" class="section-bg-image">
+    </section>
+    
+    <!-- sec-5: 성과 회고 -->
+    <section class="case-section sec-5" id="sec-5">
+        <img src="./assets/case-03/sec_5.png" alt="성과 회고" class="section-bg-image">
+    </section>
+    
+    <!-- sec-6: 목업 디자인 (마지막 섹션: 첫 화면으로 돌아가기 버튼 배치) -->
+    <section class="case-section sec-6" id="sec-6">
+        <img src="./assets/case-03/sec_6.png" alt="목업 디자인" class="section-bg-image">
+    </section>
+</div>
+
+<script>
+    const sections     = Array.from(document.querySelectorAll('.case-section'));
+    const TOTAL        = sections.length;
+    const dotsWrapper  = document.getElementById('slideDots');
+    const backToHome   = document.querySelector('.back-to-home');
+
+    // 각 섹션에 어울리는 백그라운드 색상 배열 (피그마 원본 프레임 배경과 100% 일치)
+    const bgColors = [
+        '#CCCCCC', // sec 0 (그레이)
+        '#CCCCCC', // sec 1 (그레이)
+        '#FFFFFF', // sec 2 (화이트)
+        '#CCCCCC', // sec 3 (그레이)
+        '#FFFFFF', // sec 4 (화이트)
+        '#CCCCCC', // sec 5 (그레이)
+        '#000000'  // sec 6 (블랙)
+    ];
+
+    /* ── 세로 도트 생성 ── */
+    sections.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `섹션 ${i + 1}로 이동`);
+        dot.addEventListener('click', () => scrollToSection(i));
+        dotsWrapper.appendChild(dot);
+    });
+    const dots = () => dotsWrapper.querySelectorAll('.slide-dot');
+
+    /* ── 특정 섹션으로 부드러운 스크롤 ── */
+    function scrollToSection(index) {
+        const target = document.getElementById(`sec-${index}`);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    /* ── 진행 UI 업데이트 (홈 버튼 및 배경색 제어 포함) ── */
+    function updateUI(index) {
+        // 1. 도트 활성화 상태 토글
+        dots().forEach((d, i) => d.classList.toggle('active', i === index));
+
+        // 2. 첫 번째 섹션에만 홈 버튼 표시 (투명도 토글) 및 세로 점 밑의 처음으로 가기 버튼 토글
+        const startBtn = document.querySelector('.go-to-start-btn');
+        if (index === 0) {
+            backToHome.classList.remove('hidden');
+            if (startBtn) startBtn.classList.add('hidden');
+        } else {
+            backToHome.classList.add('hidden');
+            if (startBtn) startBtn.classList.remove('hidden');
+        }
+
+        // 3. 바디 및 컨테이너 백그라운드 색상 변경 (페이드 전환)
+        document.body.style.backgroundColor = bgColors[index];
+        document.querySelector('.scroll-container').style.backgroundColor = bgColors[index];
+    }
+
+    /* ── ScrollSpy 구현 (Intersection Observer 활용) ── */
+    const observerOptions = {
+        root: null,
+        rootMargin: '-40% 0px -59% 0px', // 뷰포트 영역의 상단 40% 부근에 도달할 때 활성화 감지
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const index = sections.indexOf(entry.target);
+                updateUI(index);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // sec-0 비디오 플레이/일시정지 토글 및 컨트롤러 제어
+    const videoWrapper = document.querySelector('.sec0-video-wrapper');
+    if (videoWrapper) {
+        const video = videoWrapper.querySelector('.sec0-video');
+        const playBtn = videoWrapper.querySelector('.sec0-play-btn');
+        const timeDisplay = videoWrapper.querySelector('.sec0-time-display');
+        const progressContainer = videoWrapper.querySelector('.sec0-progress-container');
+        const progressBar = videoWrapper.querySelector('.sec0-progress-bar');
+        const resetBtn = videoWrapper.querySelector('.reset-btn');
+
+        function formatTime(secs) {
+            if (isNaN(secs) || !isFinite(secs)) return "0:00";
+            const m = Math.floor(secs / 60);
+            const s = Math.floor(secs % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                videoWrapper.classList.add('playing');
+            } else {
+                video.pause();
+                videoWrapper.classList.remove('playing');
+            }
+        }
+
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePlay();
+        });
+
+        video.addEventListener('click', () => {
+            togglePlay();
+        });
+        
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.pause();
+            videoWrapper.classList.remove('playing');
+        });
+
+        // 진행바 & 시간 업데이트
+        video.addEventListener('loadedmetadata', () => {
+            timeDisplay.textContent = `0:00 / ${formatTime(video.duration)}`;
+        });
+
+        video.addEventListener('timeupdate', () => {
+            const cur = video.currentTime;
+            const dur = video.duration || 0;
+            timeDisplay.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+            const pct = dur > 0 ? (cur / dur) * 100 : 0;
+            progressBar.style.width = `${pct}%`;
+        });
+
+        // 되감기 (처음으로)
+        resetBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.currentTime = 0;
+            if (video.paused) {
+                video.play();
+                videoWrapper.classList.add('playing');
+            }
+        });
+
+        // 진행 바 클릭 이동
+        progressContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const rect = progressContainer.getBoundingClientRect();
+            const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            video.currentTime = pct * (video.duration || 0);
+        });
+    }
+</script>
+</body>
+</html>

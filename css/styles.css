@@ -1,0 +1,287 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@font-face {
+    font-family: 'Cafe24 ClassicType';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Cafe24ClassicType-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+section {
+    position: relative;
+    width: 1920px;
+}
+
+.bg-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* 1. Home */
+.main-page {
+    height: 1195px;
+}
+
+.dynamic-frame {
+    position: absolute;
+    top: 136px;
+    left: 64px;
+    width: 1792.89px;
+    height: 929.84px;
+    z-index: 2;
+    /* exported rectangle_33 has dynamic stroke effects */
+}
+
+.contacts {
+    position: absolute;
+    top: 896px;
+    left: 114px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.contact-label {
+    font-family: 'Pretendard';
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28.64px;
+    color: #fff;
+    width: 77px;
+}
+
+.contact-item:last-child .contact-label {
+    width: 72px;
+}
+
+.contact-value {
+    font-family: 'Pretendard';
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28.64px;
+    color: #fff;
+}
+
+.main-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 932px;
+    height: 300px;
+    z-index: 3;
+}
+
+/* 2. About */
+.about-page {
+    height: 729px;
+}
+
+.about-dynamic-frame {
+    position: absolute;
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1783px;
+    height: 601px;
+    z-index: 2;
+}
+
+.about-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    padding: 64px;
+    gap: 136px;
+    width: 1783px;
+    height: 601px;
+    margin: 64px auto;
+}
+
+.profile-card-img {
+    width: 428px;
+    height: 601px;
+    /* Natural size from Figma */
+    margin-left: -64px;
+    /* Flush with left side */
+    margin-top: -64px;
+    /* Flush with top side */
+    display: block;
+}
+
+.efficiency-text {
+    width: 568px;
+}
+
+.title-box {
+    width: 364px;
+    height: 81px;
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.title-box h3 {
+    font-family: 'Cafe24 ClassicType';
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 48.88px;
+    color: #fff;
+}
+
+.desc {
+    width: 536px;
+    font-family: 'Pretendard';
+    font-size: 18px;
+    font-weight: 400;
+    text-align: justify;
+    line-height: 23.86px;
+    color: #fff;
+}
+
+.skills-tools {
+    width: 575px;
+}
+
+.skills-tools .title-box {
+    width: 304px;
+}
+
+.tools-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.tool-1 {
+    width: 135px;
+    height: 50px;
+}
+
+.tool-2 {
+    width: 136px;
+    height: 50px;
+}
+
+.tool-3 {
+    width: 543px;
+    height: 50px;
+}
+
+.tool-4 {
+    width: 543px;
+    height: 50px;
+}
+
+/* 3. Index */
+.index-page {
+    height: 1089px;
+}
+
+.index-content {
+    position: relative;
+    z-index: 3;
+    padding: 64px;
+    width: 1792px;
+    margin: 64px auto;
+}
+
+.index-title-box {
+    width: 339px;
+    height: 138px;
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 430px;
+    margin-left: -64px;
+}
+
+.index-title-box h2 {
+    font-family: 'Cafe24 ClassicType';
+    font-size: 100px;
+    font-weight: 400;
+    line-height: 122.2px;
+    color: #fff;
+}
+
+.case-list-container {
+    position: relative;
+    width: 1792px;
+    height: 339px;
+    margin-left: -64px;
+    overflow: hidden;
+}
+
+.case-list-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.case-links-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.case-link-item {
+    flex: 1;
+    width: 100%;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0);
+    border-left: 0px solid #ffffff;
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.case-link-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 8px solid #ffffff;
+    box-shadow: inset 12px 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.case-link-item:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
